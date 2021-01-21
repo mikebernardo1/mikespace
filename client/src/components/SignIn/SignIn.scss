@@ -1,0 +1,32 @@
+@import '../../styles/global';
+
+.signin{
+    height:96vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+
+    &__header{
+        color:#ffffff;
+    }
+
+    &__form{
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+
+        &-input{
+            padding:8px;
+            border-radius: 100px;
+        }
+
+        &-button{
+            padding:8px;
+            border-radius: 100px;
+            background-color: #ffffff;
+            color: #000000;
+        }
+    }
+}

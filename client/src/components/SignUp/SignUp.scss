@@ -1,0 +1,15 @@
+@import '../../styles/global';
+
+.signup{
+    &__text{
+        &-signup{
+            &-noaccount{
+                color: #ffffff;
+                &-link{
+                    text-decoration: none;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}

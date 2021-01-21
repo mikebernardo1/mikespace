@@ -1,0 +1,22 @@
+@import '../../styles/global';
+
+.nav{
+    padding:0 16px;
+    background-color: #000000;
+}
+
+.navauth{
+    display:flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    width:100%;
+
+    &__list{
+        padding:8px;
+        
+        &-link{
+            text-decoration: none;
+            color: #ffffff;
+        }
+    }
+}

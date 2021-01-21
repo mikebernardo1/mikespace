@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
  
 import { withFirebase } from '../Firebase/index';
+
+import './PasswordForget.scss';
  
-const PasswordForgetPage = () => (
+const PasswordForget = () => (
   <div>
     <h1>PasswordForget</h1>
     <PasswordForgetForm />
   </div>
+);
+
+const PasswordForgetLink = () => (
+  <p className="passwordforget__form-text">
+    <Link to={'/pw-forget'}  className="passwordforget__form-text-link">Forgot Password?</Link>
+  </p>
 );
  
 class PasswordForgetFormBase extends Component {
@@ -60,13 +68,7 @@ class PasswordForgetFormBase extends Component {
   }
 }
  
-const PasswordForgetLink = () => (
-  <p>
-    <Link to={'/pw-forget'}>Forgot Password?</Link>
-  </p>
-);
- 
-export default PasswordForgetPage;
+export default PasswordForget;
  
 const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
  

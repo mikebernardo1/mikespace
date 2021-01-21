@@ -10,7 +10,7 @@ const firebaseConfig = {
     appId: process.env.APP_ID
   };
 
-class Firebase {
+export default class Firebase {
   constructor(){
     app.initializeApp(firebaseConfig);
 
@@ -33,5 +33,3 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 
 }
-
-export default Firebase;

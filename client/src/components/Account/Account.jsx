@@ -1,7 +1,6 @@
 import React from 'react';
 import { AuthUserContext, withAuthorization } from '../Session/Session';
  
-import { PasswordForgetForm } from '../PasswordForget/PasswordForget';
 import PasswordChangeForm from '../PasswordChange/PasswordChange';
  
 const AccountPage = () => (
@@ -9,7 +8,6 @@ const AccountPage = () => (
     {authUser => (
       <div>
         <h1>Account: {authUser.email}</h1>
-        <PasswordForgetForm />
         <PasswordChangeForm />
       </div>
     )}

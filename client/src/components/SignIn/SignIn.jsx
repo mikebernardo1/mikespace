@@ -5,10 +5,12 @@ import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp/SignUp';
 import { PasswordForgetLink } from '../PasswordForget/PasswordForget';
 import { withFirebase } from '../Firebase/index';
+
+import './SignIn.scss';
  
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
+  <div className="signin">
+    <h1 className="signin__header">Sign In</h1>
     <SignInForm />
     <PasswordForgetLink/>
     <SignUpLink />
@@ -23,7 +25,7 @@ class SignInFormBase extends Component {
         error: null,
     }
  
-  onSubmit = event => {
+  onSubmit = (e) => {
     const { email, password } = this.state;
  
     this.props.firebase
@@ -38,26 +40,27 @@ class SignInFormBase extends Component {
         this.setState({ error });
       });
  
-    event.preventDefault();
+    e.preventDefault();
   };
  
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
  
   render() {
     const { email, password, error } = this.state;
  
-    const isInvalid = password === '' || email === '';
+    const isInvalid = (password === '' || email === '');
  
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className="signin__form">
         <input
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          className="signin__form-input"
         />
         <input
           name="password"
@@ -65,12 +68,13 @@ class SignInFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          className="signin__form-input"
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="submit" className="signin__form-button">
           Sign In
         </button>
  
-        {error && <p>{error.message}</p>}
+        {error && <p className="signin__form-errortext">{error.message}</p>}
       </form>
     );
   }

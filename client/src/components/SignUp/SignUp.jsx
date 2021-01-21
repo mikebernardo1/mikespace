@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {compose} from 'recompose';
 import { withFirebase } from '../Firebase/FirebaseContext';
+
+import './SignUp.scss';
  
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
+  <div className="signup">
+    <h1 className="signup__text-signup">SignUp</h1>
     <SignUpForm/>
   </div>
 );
@@ -96,7 +98,7 @@ class SignUpFormBase extends Component {
 }
  
 const SignUpLink = () => (
-    <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
+    <p className="signup__text-signup-noaccount">Don't have an account? <Link to='/signup' className="signup__text-signup-noaccount-link">Sign Up</Link></p>
 );
 
 const SignUpForm = compose(
