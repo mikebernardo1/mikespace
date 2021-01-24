@@ -10,10 +10,12 @@ import './SignIn.scss';
  
 const SignInPage = () => (
   <div className="signin">
-    <h1 className="signin__header">Sign In</h1>
-    <SignInForm />
-    <PasswordForgetLink/>
-    <SignUpLink />
+    <div className="signin__card">
+      <h1 className="signin__header">Sign In</h1>
+      <SignInForm />
+      <PasswordForgetLink/>
+      <SignUpLink />
+    </div>
   </div>
 );
  
@@ -22,6 +24,7 @@ class SignInFormBase extends Component {
     state ={
         email: '',
         password: '',
+        username: '',
         error: null,
     }
  
@@ -54,25 +57,27 @@ class SignInFormBase extends Component {
  
     return (
       <form onSubmit={this.onSubmit} className="signin__form">
-        <input
+        <div className="signin__form-div1">
+          <input
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
           className="signin__form-input"
-        />
-        <input
+          />
+          <input
           name="password"
           value={password}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
           className="signin__form-input"
-        />
-        <button disabled={isInvalid} type="submit" className="signin__form-button">
+          />
+          <button disabled={isInvalid} type="submit" className="signin__form-button">
           Sign In
-        </button>
+          </button>
+        </div>
  
         {error && <p className="signin__form-errortext">{error.message}</p>}
       </form>

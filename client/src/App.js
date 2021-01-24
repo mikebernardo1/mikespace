@@ -8,6 +8,7 @@ import SignIn from './components/SignIn/SignIn';
 import PasswordForget from './components/PasswordForget/PasswordForget';
 import Home from './components/Home/Home';
 import Account from './components/Account/Account';
+import SingleProduct from './components/SingleProduct/SingleProduct'
 
 import { withAuthentication } from './components/Session/Session';
 
@@ -40,7 +41,8 @@ class App extends React.Component{
             <Route path='/signup'component={SignUp} />
             <Route path='/signin' component={SignIn} />
             <Route path='/pw-forget' component={PasswordForget} />
-            <Route path='/home' component={Home} />
+            <Route exact path='/home' component={Home} />
+            <Route path='/home/products/:id' component={SingleProduct} />
             <Route path='/account' component={Account} />
         </BrowserRouter>
       </>

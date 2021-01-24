@@ -6,17 +6,38 @@
 }
 
 .navauth{
-    display:flex;
-    justify-content: flex-end;
-    list-style-type: none;
-    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__form{
+        &-input{
+        border-radius: 20px;
+        padding:8px;
+        }
+    }
 
     &__list{
-        padding:8px;
-        
-        &-link{
-            text-decoration: none;
-            color: #ffffff;
+        display:flex;
+        justify-content: flex-end;
+        align-items: center;
+        list-style-type: none;
+
+        &-item{
+            padding:8px;
+            
+            &-link{
+                text-decoration: none;
+                color: #ffffff;
+            }
+    
+            &-button{
+                padding:8px;
+                border-radius: 100px;
+                background-color: #ffffff;
+                color: #000000;
+            }
         }
+
     }
 }

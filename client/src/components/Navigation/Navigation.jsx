@@ -1,33 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignOutButton from '../SignOut/SignOut';
 import { AuthUserContext } from '../Session/Session';
+
+import SearchBar from '../SearchBar/SearchBar';
+import SignOutButton from '../SignOut/SignOut';
 
 import './Navigation.scss';
 
 const NavigationAuth = () => (
-    <ul className="navauth">
-      <li className="navauth__list">
-        <Link to={'/home'} className="navauth__list-link">Home</Link>
+  <div className="navauth">
+
+    <SearchBar/>
+
+    <ul className="navauth__list">
+      <li className="navauth__list-item">
+        <Link to={'/home'} className="navauth__list-item-link">Home</Link>
       </li>
-      <li className="navauth__list">
-        <Link to={'/account'} className="navauth__list-link">Account</Link>
+      <li className="navauth__list-item">
+        <Link to={'/account'} className="navauth__list-item-link">Account</Link>
       </li>
-      <li className="navauth__list">
-        <SignOutButton  className="navauth__list-button"/>
+      <li className="navauth__list-item">
+        <SignOutButton/>
       </li>
     </ul>
+  </div>
 );
    
 const NavigationNonAuth = () => (
-    <ul className="navauth">
-      <li className="navauth__list">
-        <Link to={'/'} className="navauth__list-link">Landing</Link>
+  <div className="navauth">
+    <div></div>
+    <ul className="navauth__list">
+      <li className="navauth__list-item">
+        <Link to={'/'} className="navauth__list-item-link">Landing</Link>
       </li>
-      <li className="navauth__list">
-        <Link to={'/signin'} className="navauth__list-link">Sign In</Link>
+      <li className="navauth__list-item">
+        <Link to={'/signin'} className="navauth__list-item-link">Sign In</Link>
       </li>
     </ul>
+  </div>
 );
 
 export default function Navigation() {

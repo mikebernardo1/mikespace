@@ -6,9 +6,11 @@ import { withFirebase } from '../Firebase/index';
 import './PasswordForget.scss';
  
 const PasswordForget = () => (
-  <div>
-    <h1>PasswordForget</h1>
-    <PasswordForgetForm />
+  <div className="passwordforget">
+    <div className="passwordforget__card">
+      <h1 className="passwordforget__header">Password Forget</h1>
+      <PasswordForgetForm />
+    </div>
   </div>
 );
 
@@ -31,7 +33,8 @@ class PasswordForgetFormBase extends Component {
     this.props.firebase
       .doPasswordReset(email)
       .then(() => {
-        this.setState( this.state );
+        this.setState( this.state )
+        return alert('Password sent to email')
       })
       .catch(error => {
         this.setState({ error });
@@ -50,19 +53,21 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === '';
  
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={this.state.email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
+      <form onSubmit={this.onSubmit} className="passwordforget__form">
+        <div className="passwordforget__form-div1">
+          <input
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address" className="passwordforget__form-input"
+          />
+          <button disabled={isInvalid} type="submit" className="passwordforget__form-button">
+            Reset My Password
+          </button>
+        </div>
  
-        {error && <p>{error.message}</p>}
+        {error && <p className="passwordforget__form-errortext">{error.message}</p>}
       </form>
     );
   }

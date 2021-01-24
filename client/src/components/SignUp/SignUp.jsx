@@ -7,94 +7,73 @@ import './SignUp.scss';
  
 const SignUpPage = () => (
   <div className="signup">
-    <h1 className="signup__text-signup">SignUp</h1>
-    <SignUpForm/>
+    <div className="signup__card">
+      <h1 className="signup__header">SignUp</h1>
+      <SignUpForm/>
+    </div>
   </div>
 );
  
 class SignUpFormBase extends Component {
 
-    state={
-    username: '',
-    email: '',
-    passwordOne: '',
-    passwordTwo: '',
-    error: null,
-    }
+  state={
+  username: '',
+  email: '',
+  initialPassword: '',
+  confirmedPassword: '',
+  error: null,
+  }
 
-    onSubmit = (e) => {
-    const {email, passwordOne } = this.state;
+  onSubmit = (e) => {
+  const {email, initialPassword} = this.state;
  
-    this.props.firebase
-        .doCreateUserWithEmailAndPassword(email, passwordOne)
-        .then(authUser => {
-            this.setState(this.state);
-            this.props.history.push('/home')
-        })
-        .catch(error => {
-            this.setState({ error });
-        });
- 
+  this.props.firebase
+    .doCreateUserWithEmailAndPassword(email, initialPassword)
+    .then(() => {
+      this.setState(this.state);
+      this.props.history.push('/home')
+    })
+    .catch(error => {
+      this.setState({ error });
+    }); 
     e.preventDefault();
-    }
+  }
  
-    onChange = (e) => {
-        this.setState({ 
-            [e.target.name]: e.target.value 
-        });
-    };
+  onChange = (e) => {
+    this.setState({ 
+      [e.target.name]: e.target.value 
+    });
+  };
  
-    render() {
-        const {
-            username,
-            email,
-            passwordOne,
-            passwordTwo,
-            error,
-          } = this.state;
+  render() {
+    const {
+      username,
+      email,
+      initialPassword,
+      confirmedPassword,
+      error,
+    } = this.state;
 
-        const isInvalid =
-        passwordOne !== passwordTwo ||
-        passwordOne === '' ||
-        email === '' ||
-        username === '';
+    const isInvalid =
+    (initialPassword !== confirmedPassword ||
+    initialPassword === '' ||
+    email === '' ||
+    username === '');
 
-        return (
-            <form onSubmit={this.onSubmit}>
-            <input
-              name="username"
-              value={username}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Full Name"
-            />
-            <input
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Email Address"
-            />
-            <input
-              name="passwordOne"
-              value={passwordOne}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Password"
-            />
-            <input
-              name="passwordTwo"
-              value={passwordTwo}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Confirm Password"
-            />
-            <button disabled={isInvalid} type="submit">Sign Up</button>
+    return (
+      <form onSubmit={this.onSubmit} className="signup__form">
+        <div className="signup__form-div1">
+          <input name="username" value={username} onChange={this.onChange} type="text" placeholder="Full Name" className="signup__form-input"/>
+          <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address" className="signup__form-input" />
+          <input name="initialPassword" value={initialPassword} onChange={this.onChange} type="password" placeholder="Password" className="signup__form-input" />
+          <input name="confirmedPassword" value={confirmedPassword} onChange={this.onChange} type="password" placeholder="Confirm Password" className="signup__form-input" />
+          <button disabled={isInvalid} type="submit" className="signup__form-button">Sign Up</button>
+        </div>
      
-            {error && <p>{error.message}</p>}
-          </form>
-        );
-    }
+        {error && <p className="signup__form-errortext">{error.message}</p>}
+      </form>
+    );
+  }
 }
  
 const SignUpLink = () => (
@@ -102,8 +81,8 @@ const SignUpLink = () => (
 );
 
 const SignUpForm = compose(
-    withRouter,
-    withFirebase,
+  withRouter,
+  withFirebase,
   )(SignUpFormBase);
  
 export default SignUpPage;
