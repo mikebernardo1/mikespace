@@ -43,7 +43,7 @@ class App extends React.Component{
             <Route path='/signin' component={SignIn} />
             <Route path='/pw-forget' component={PasswordForget} />
             <Route exact path='/home' component={Home} />
-            <Route path='/home/products/:id' component={SingleProduct} />
+            <Route path='/home/:id' component={SingleProduct} />
             <Route path='/account' component={Account} />
             <Route path='/shoppingcart' component={ShoppingCart} />
         </BrowserRouter>

@@ -1,29 +1,55 @@
-@import '../../styles//global';
+@import '../../styles/fonts';
+@import '../../styles/global';
+@import '../../styles/mixins';
+@import '../../styles/partials';
+@import '../../styles/variables';
 
 .singleproduct{
+    height:95vh;
     display:flex;
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    background-color: $body-background;
+    
     &__card{
-        width:300px;
-        height:500px;
-        margin:8px;
-        border: 2px solid #000000;
-        border-radius: 20px;
-        padding:8px;
-
-        &-div1{
-            display: flex;
-            justify-content: center;
+        &-back{
+            display:flex;
+            align-self: flex-start;
+            justify-items: flex-start;
+            width:25px;
+            height:25px;
+            
         }
+        &-block{
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width:500px;
+            height:500px;
+            border: 2px solid $nav-background;
+            border-radius: 20px; 
+            padding:16px;
+            background-color: $card-background;
+            overflow: scroll;
 
-        &-image{
-            max-width: 100px;
-            max-height: 100px;
-        }
-
-        &-description{
-        font-size: .9rem;
+            &-div1{
+                &-image{
+                    width:300px;
+                    height:300px;
+                }
+            }
+            &-div2{
+                &-title{
+                    display:flex;
+                    justify-content: center;
+                }
+                &-price{
+                    display:flex;
+                    justify-content: flex-end;
+                }
+            }
         }
     }
 }

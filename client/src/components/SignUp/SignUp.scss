@@ -1,27 +1,32 @@
+@import '../../styles/fonts';
 @import '../../styles/global';
+@import '../../styles/mixins';
+@import '../../styles/partials';
+@import '../../styles/variables';
 
 .signup{
-    height:96vh;
+    height:95vh;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background-color: $body-background;
 
     &__card{
         width: 400px;
         height: 400px;
-        border: 2px solid #ffffff;
+        border: 2px solid $nav-background;
         border-radius: 20px;
         display:flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 8px;
+        background-color: $card-background;
     }
 
     &__header{
-        color:#ffffff;
+        color:$nav-background;
     }
 
     &__form{
@@ -37,17 +42,19 @@
         &-input{
             padding:8px;
             border-radius: 100px;
+            border: none;
         }
 
         &-button{
             padding:8px;
             border-radius: 100px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: $nav-background;
+            color: $card-background;
+            border:none;
         }
 
         &-errortext{
-            color:#ffffff;
+            color:$nav-background;
             display: flex;
             justify-content: center;
         }
@@ -56,10 +63,10 @@
     &__text{
         &-signup{
             &-noaccount{
-                color: #ffffff;
+                color: $nav-background;
                 &-link{
                     text-decoration: none;
-                    color: #ffffff;
+                    color: $nav-background;
                 }
             }
         }

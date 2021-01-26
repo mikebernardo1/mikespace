@@ -3,7 +3,7 @@ import axios from 'axios';
  
 import { withAuthorization } from '../Session/Session';
  
-class HomePage extends React.Component{
+class ShoppingCart extends React.Component{
 
   state = {
     cart: [],
@@ -37,4 +37,4 @@ render(){
  
 const condition = authUser => !!authUser;
  
-export default withAuthorization(condition)(HomePage);
+export default withAuthorization(condition)(ShoppingCart);

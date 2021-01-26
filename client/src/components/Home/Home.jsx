@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import '../AllProducts/AllProducts.scss';
+import '../Home/Home.scss';
 import {Link} from 'react-router-dom';
  
 import { withAuthorization } from '../Session/Session';
@@ -39,28 +39,31 @@ submitHandler = (e) =>{
 
 render(){
   return(
-  <form className="allproducts"name="id" id="form" onSubmit={this.submitHandler}>
+  <div className="home">
+    <h1 className="home__header">Welcome to MikeSpace</h1>
+    <form className="home__form"name="id" id="form" onSubmit={this.submitHandler}>
     {this.state.products.map((product)=>{
       return(
-        <div className="allproducts" key={product.id}>
-            <div className="allproducts__card">
-                <Link to={`/home/products/${product.id}`}>
-                <div className="allproducts__card-div1">
-                    <img src= {product.image} alt={product.category} className="allproducts__card-image" name="productImage"></img>
-                </div>
-                </Link>
-                <div className="allproducts__card-div2">
-                    <h5 className="allproducts__card-title" name="productName">{product.title} </h5>
-                    <p className="allproducts__card-price" name="productPrice">${product.price}</p>
-                </div>
-                <div className="allproducts__card-div3">
-                    <button type="submit" form="form">Buy Now</button>
-                </div>  
+        <div className="home__block" key={product.id}>
+          <div className="home__card">
+            <Link to={`/home/${product.id}`}>
+              <div className="home__card-div1">
+                  <img src= {product.image} alt={product.category} className="home__card-image" name="productImage"></img>
+              </div>
+            </Link>
+            <div className="home__card-div2">
+              <h3 className="home__card-title" name="productName">{product.title} </h3>
+              <p className="home__card-price" name="productPrice">${product.price}</p>
             </div>
+            <div className="home__card-div3">
+              <button className="home__card-div3-button" type="submit" form="form">Buy Now</button>
+            </div>  
+          </div>
         </div>
       )
     })}
-  </form>
+    </form>
+  </div>
   )}
 }
  
