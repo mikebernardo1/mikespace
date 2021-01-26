@@ -1,16 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthUserContext } from '../Session/Session';
-
-import SearchBar from '../SearchBar/SearchBar';
 import SignOutButton from '../SignOut/SignOut';
 
 import './Navigation.scss';
 
 const NavigationAuth = () => (
   <div className="navauth">
-
-    <SearchBar/>
+    <div></div>
 
     <ul className="navauth__list">
       <li className="navauth__list-item">
@@ -18,6 +15,9 @@ const NavigationAuth = () => (
       </li>
       <li className="navauth__list-item">
         <Link to={'/account'} className="navauth__list-item-link">Account</Link>
+      </li>
+      <li className="navauth__list-item">
+        <Link to={'/shoppingcart'} className="navauth__list-item-link">Shopping Cart</Link>
       </li>
       <li className="navauth__list-item">
         <SignOutButton/>

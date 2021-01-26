@@ -28,7 +28,7 @@ class SignUpFormBase extends Component {
   const {email, initialPassword} = this.state;
  
   this.props.firebase
-    .doCreateUserWithEmailAndPassword(email, initialPassword)
+    .CreateUserWithEmailAndPassword(email, initialPassword)
     .then(() => {
       this.setState(this.state);
       this.props.history.push('/home')
@@ -63,10 +63,33 @@ class SignUpFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit} className="signup__form">
         <div className="signup__form-div1">
-          <input name="username" value={username} onChange={this.onChange} type="text" placeholder="Full Name" className="signup__form-input"/>
-          <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address" className="signup__form-input" />
-          <input name="initialPassword" value={initialPassword} onChange={this.onChange} type="password" placeholder="Password" className="signup__form-input" />
-          <input name="confirmedPassword" value={confirmedPassword} onChange={this.onChange} type="password" placeholder="Confirm Password" className="signup__form-input" />
+          <input name="username" 
+          value={username} 
+          onChange={this.onChange} 
+          type="text" 
+          placeholder="Full Name" 
+          className="signup__form-input"
+          />
+          <input name="email" 
+          value={email} 
+          onChange={this.onChange} 
+          type="text" 
+          placeholder="Email Address" 
+          className="signup__form-input"
+          />
+          <input name="initialPassword" 
+          value={initialPassword} 
+          onChange={this.onChange} 
+          type="password" 
+          placeholder="Password" 
+          className="signup__form-input"
+          />
+          <input name="confirmedPassword" 
+          value={confirmedPassword} 
+          onChange={this.onChange} 
+          type="password" 
+          placeholder="Confirm Password" 
+          className="signup__form-input" />
           <button disabled={isInvalid} type="submit" className="signup__form-button">Sign Up</button>
         </div>
      

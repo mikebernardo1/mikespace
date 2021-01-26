@@ -19,17 +19,17 @@ export default class Firebase {
 
     // *** Auth API ***
  
-    doCreateUserWithEmailAndPassword = (email, password) =>
+    CreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
-    doSignInWithEmailAndPassword = (email, password) =>
+    SignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-    doSignOut = () => this.auth.signOut();
+    SignOut = () => this.auth.signOut();
 
-    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+    PasswordReset = email => this.auth.sendPasswordResetEmail(email);
     
-    doPasswordUpdate = password =>
+    PasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
 }

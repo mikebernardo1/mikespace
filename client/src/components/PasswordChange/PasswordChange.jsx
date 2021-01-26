@@ -15,7 +15,7 @@ class PasswordChangeForm extends Component {
     const { passwordOne } = this.state;
  
     this.props.firebase
-      .doPasswordUpdate(passwordOne)
+      .PasswordUpdate(passwordOne)
       .then(() => {
         this.setState(this.state)
         return alert('Password Changed')

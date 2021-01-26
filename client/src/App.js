@@ -8,7 +8,8 @@ import SignIn from './components/SignIn/SignIn';
 import PasswordForget from './components/PasswordForget/PasswordForget';
 import Home from './components/Home/Home';
 import Account from './components/Account/Account';
-import SingleProduct from './components/SingleProduct/SingleProduct'
+import SingleProduct from './components/SingleProduct/SingleProduct';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 import { withAuthentication } from './components/Session/Session';
 
@@ -44,6 +45,7 @@ class App extends React.Component{
             <Route exact path='/home' component={Home} />
             <Route path='/home/products/:id' component={SingleProduct} />
             <Route path='/account' component={Account} />
+            <Route path='/shoppingcart' component={ShoppingCart} />
         </BrowserRouter>
       </>
     )
