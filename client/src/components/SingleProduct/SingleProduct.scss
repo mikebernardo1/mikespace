@@ -7,7 +7,6 @@
 .singleproduct{
     height:95vh;
     display:flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: $body-background;
@@ -33,6 +32,7 @@
             padding:16px;
             background-color: $card-background;
             overflow: scroll;
+            margin:0 16px;
 
             &-div1{
                 &-image{

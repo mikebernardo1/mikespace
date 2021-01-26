@@ -11,10 +11,11 @@ class HomePage extends React.Component{
 
   state = {
     products: [],
+    cart:[],
   }
 
 componentDidMount(){
-  axios.get('https://fakestoreapi.com/products')
+  axios.get('https://fakestoreapi.com/products/')
   .then((res)=>{
     this.setState({
       products: res.data
@@ -24,14 +25,21 @@ componentDidMount(){
 
 submitHandler = (e) =>{
   e.preventDefault();
+
   const upload = {
-      productName: this.productName,
-      productImage: this.productImage,
-      productPrice: this.productPrice,
-      description: this.description,
-      category: this.category.value,
-      quantity:1
-  };
+    productID: e.target.productID,
+    productName: this.state.name,
+    productImage: this.state.name,
+    productPrice: this.state.name,
+    description: this.state.name,
+    category: this.state.name,
+    quantity:1
+};
+
+  this.setState({
+    cart:upload
+  })
+  console.log(upload)
 
   axios
   .post('http://localhost:8080/shoppingcart', upload)
@@ -41,7 +49,7 @@ render(){
   return(
   <div className="home">
     <h1 className="home__header">Welcome to MikeSpace</h1>
-    <form className="home__form"name="id" id="form" onSubmit={this.submitHandler}>
+    <form className="home__form" name="productID" id="form" onSubmit={this.submitHandler}>
     {this.state.products.map((product)=>{
       return(
         <div className="home__block" key={product.id}>
