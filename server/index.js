@@ -67,10 +67,32 @@ let upload = {
         });
     })
 
-return res.status(201).send(upload);});
+return res.status(201).send(upload);})
+
+.get('/comments/:id', (req, res) => {
+    let commentsID = comments.find((comment)=> comment.id == req.params.id);
+    return res.send(commentsID);
+    })
+
+.delete('/comments/:id', (req, res) => {
+    for (let i = 0; i < comments.length; i++){
+    let currentComments = comments[i];
+
+    let newComments = comments.filter((comment)=> comment.id !== req.params.id)
+
+        if (currentComments.id == req.params.id){
+
+        fs.writeFile('./data/comments.json', JSON.stringify(newComments), (err) => {if (err){
+            console.log(err)
+        }})
+
+        return res.send(req.params.id + ' ' + 'is deleted')
+        }
+    }
+})
 
 // start Express on port 8080
 app.listen(8080, () => {
     console.log('Server Started on http://localhost:8080');
     console.log('Press CTRL + C to stop server');
-    });
+    })

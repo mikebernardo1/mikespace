@@ -1,5 +1,6 @@
 import './SingleProduct.scss';
 import back from '../../assets/icons/back.svg';
+import cancel from '../../assets/icons/cancel.png'
 
 import React from 'react';
 import axios from 'axios';
@@ -40,6 +41,20 @@ class SingleProduct extends React.Component{
   
     axios
     .post('http://localhost:8080/comments', upload)
+
+    axios
+    .get('http://localhost:8080/comments')
+    .then((res)=>{
+      console.log(res.data)
+      this.setState({
+        comments: res.data
+      })
+    })
+
+  }
+
+  clickDelete = (e)=>{
+    axios.delete(`http://localhost:8080/comments/${this.id}`)
   }
 
   handleBackButton = () => {
@@ -81,6 +96,7 @@ class SingleProduct extends React.Component{
         {this.state.comments.map((comment)=>{
         return(
         <div className="singleproduct__form-div4" key={comment.id}>
+          <img src={cancel} alt ={cancel} onClick={this.clickDelete} className="singleproduct__card-back"></img>
           <div className="singleproduct__form-div4-comments">
             <h3 className="singleproduct__form-div4-comments-name">{comment.subject}</h3>
             <p className="singleproduct__form-div4-comments-text">{comment.email}</p>
