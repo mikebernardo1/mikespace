@@ -23,23 +23,21 @@ componentDidMount(){
   })
 }
 
-submitHandler = (e) =>{
-  e.preventDefault();
+clickHandler(product){
 
   const upload = {
-    productID: e.target.productID,
-    productName: this.state.name,
-    productImage: this.state.name,
-    productPrice: this.state.name,
-    description: this.state.name,
-    category: this.state.name,
+    productID: product.id,
+    productName: product.title,
+    productImage: product.image,
+    productPrice: product.price,
+    description: product.description,
+    category: product.category,
     quantity:1
 };
 
   this.setState({
     cart:upload
   })
-  console.log(upload)
 
   axios
   .post('http://localhost:8080/shoppingcart', upload)
@@ -49,7 +47,7 @@ render(){
   return(
   <div className="home">
     <h1 className="home__header">Welcome to MikeSpace</h1>
-    <form className="home__form" name="productID" id="form" onSubmit={this.submitHandler}>
+    <form className="home__form" name="productID" id="form">
     {this.state.products.map((product)=>{
       return(
         <div className="home__block" key={product.id}>
@@ -61,10 +59,11 @@ render(){
             </Link>
             <div className="home__card-div2">
               <h3 className="home__card-title" name="productName">{product.title} </h3>
-              <p className="home__card-price" name="productPrice">${product.price}</p>
+              <p className="home__card-price" name="productPrice">${(product.price).toFixed(2)}</p>
             </div>
             <div className="home__card-div3">
-              <button className="home__card-div3-button" type="submit" form="form">Buy Now</button>
+              {/* <button className="home__card-div3-button" type="submit" form="form">Buy Now</button> */}
+              <h1 onClick={this.clickHandler.bind(this, product)}>Buy</h1>
             </div>  
           </div>
         </div>

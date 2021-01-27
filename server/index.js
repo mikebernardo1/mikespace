@@ -1,26 +1,29 @@
 // initialize Express in project
 const express = require('express');
+const router = express.Router();
 const app = express();
 const cors = require('cors');
-const cart = require('./data/cart.json');
+
+const carts = require('./data/cart.json');
 const comments = require('./data/comments.json');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-const axios = require('axios');
+
 
 app.use(cors());
 app.use(express.json());
 
 app
 .get('/shoppingcart', (req, res) => {
-    return res.send(cart);
+    return res.send(carts);
     })
 
+app
 .post('/shoppingcart', (req, res) => {
 
 let upload = {
     cartID: uuidv4(),
-    productID:req.body.productID,
+    productID: req.body.productID,
     productName: req.body.productName,
     productImage: req.body.productImage,
     productPrice: req.body.productPrice,
@@ -29,7 +32,7 @@ let upload = {
     quantity:req.body.quantity,
     };
 
-    cart.push(upload);
+    carts.push(upload);
 
     fs.readFile("./data/cart.json", function (err, data) {
         let json = JSON.parse(data);
@@ -40,13 +43,39 @@ let upload = {
         });
     })
 
-return res.status(201).send(upload);});
+return res.status(201).send(upload);})
+
+app
+.get('/shoppingcart/:productID', (req, res) => {
+    let productID = carts.find((cart)=> cart.productID == req.params.productID);
+    return res.send(productID);
+    })
+
+app    
+.delete('/shoppingcart/:productID', (req, res) => {
+    for (let i = 0; i < carts.length; i++){
+    let currentCart = carts[i];
+
+    let newCart = carts.filter((cart)=> cart.productID !== req.params.productID)
+
+        if (currentCart.productID == req.params.productID){
+
+        fs.writeFile('./data/cart.json', JSON.stringify(newCart), (err) => {if (err){
+            console.log(err)
+        }})
+
+        return res.send(req.params.productID + ' ' + 'is deleted')
+        }
+    }
+})
+
 
 app
 .get('/comments', (req, res) => {
     return res.send(comments);
     })
 
+app
 .post('/comments', (req, res) => {
 
 let upload = {
@@ -69,11 +98,13 @@ let upload = {
 
 return res.status(201).send(upload);})
 
+app
 .get('/comments/:id', (req, res) => {
     let commentsID = comments.find((comment)=> comment.id == req.params.id);
     return res.send(commentsID);
     })
 
+app
 .delete('/comments/:id', (req, res) => {
     for (let i = 0; i < comments.length; i++){
     let currentComments = comments[i];

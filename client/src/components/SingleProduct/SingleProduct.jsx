@@ -53,10 +53,15 @@ class SingleProduct extends React.Component{
 
   }
 
-  clickDelete = (e)=>{
+  onDelete = (id) => {
     axios.delete(`http://localhost:8080/comments/${this.id}`)
-  }
-
+    .then((res=>{
+      this.setState({
+        cart: this.state.comments.filter(comment => comment.id !== id)
+        })
+      })
+    )}
+    
   handleBackButton = () => {
     this.props.history.goBack();
   }
@@ -76,6 +81,7 @@ class SingleProduct extends React.Component{
           <p className="singleproduct__card-block-div2-description">{this.state.products.description}</p>
         </div>
       </div>
+      
       <div className="singleproduct__card-block">
         <div className="singleproduct__form-div1">
           <h3 className="singleproduct__form-div1-header">Comments</h3>
@@ -96,7 +102,7 @@ class SingleProduct extends React.Component{
         {this.state.comments.map((comment)=>{
         return(
         <div className="singleproduct__form-div4" key={comment.id}>
-          <img src={cancel} alt ={cancel} onClick={this.clickDelete} className="singleproduct__card-back"></img>
+          <img src={cancel} alt ={cancel} onClick={this.onDelete} className="singleproduct__card-back"></img>
           <div className="singleproduct__form-div4-comments">
             <h3 className="singleproduct__form-div4-comments-name">{comment.subject}</h3>
             <p className="singleproduct__form-div4-comments-text">{comment.email}</p>
