@@ -1,6 +1,6 @@
 import './SingleProduct.scss';
 import back from '../../assets/icons/back.svg';
-import cancel from '../../assets/icons/cancel.png'
+import cart from '../../assets/icons/shoppingcart.svg';
 
 import React from 'react';
 import axios from 'axios';
@@ -11,7 +11,8 @@ class SingleProduct extends React.Component{
 
   state = {
     products: [],
-    comments: []
+    comments: [],
+    cart:[]
     }
     
   componentDidMount(){
@@ -30,7 +31,7 @@ class SingleProduct extends React.Component{
     })
   }
 
-  submitHandler = (e) =>{
+submitHandler = (e) =>{
     e.preventDefault();
   
     const upload = {
@@ -45,7 +46,6 @@ class SingleProduct extends React.Component{
     axios
     .get('http://localhost:8080/comments')
     .then((res)=>{
-      console.log(res.data)
       this.setState({
         comments: res.data
       })
@@ -53,7 +53,7 @@ class SingleProduct extends React.Component{
 
   }
 
-  onDelete = (id) => {
+onDelete = (id) => {
     axios.delete(`http://localhost:8080/comments/${this.id}`)
     .then((res=>{
       this.setState({
@@ -62,8 +62,28 @@ class SingleProduct extends React.Component{
       })
     )}
     
-  handleBackButton = () => {
+handleBackButton = () => {
     this.props.history.goBack();
+  }
+
+clickHandler(){
+
+    const upload = {
+      id: this.state.products.id,
+      productName: this.state.products.title,
+      productImage: this.state.products.image,
+      productPrice: this.state.products.price,
+      description: this.state.products.description,
+      category: this.state.products.category,
+      quantity:1
+  };
+  
+    this.setState({
+      cart:upload
+    })
+  
+    axios
+    .post('http://localhost:8080/shoppingcart', upload)
   }
 
   render(){
@@ -80,6 +100,7 @@ class SingleProduct extends React.Component{
           <h4 className="singleproduct__card-block-div2-price">${this.state.products.price}</h4>
           <p className="singleproduct__card-block-div2-description">{this.state.products.description}</p>
         </div>
+        <img src= {cart} onClick={this.clickHandler} alt="cart"  className="singleproduct__card-block-cart"></img>
       </div>
       
       <div className="singleproduct__card-block">
@@ -87,22 +108,19 @@ class SingleProduct extends React.Component{
           <h3 className="singleproduct__form-div1-header">Comments</h3>
         </div>
         <div className="singleproduct__form-div2">
-          <p className="singleproduct__form-div2-text">Join the Conversation</p>
+          <p className="singleproduct__form-div2-text">Write your review</p>
         </div>
-        <div className="singleproduct__form-div3">
-          <form className="singleproduct__form-div3-formfield" onSubmit={this.submitHandler}>
-            <div className="singleproduct__form-div3-formfield-div">
-              <input type="text" placeholder="subject" name="subject"></input>
-              <input type="text" placeholder="email" name="email"></input>
-              <textarea placeholder="place comment here" className="singleproduct__form-div3-formfield-div-textarea" name="comments"></textarea>
-              <button className="singleproduct__form-div3-formfield-div-button">Comment</button>
-            </div>
-          </form>
-        </div>
+        <form className="singleproduct__form-formfield" onSubmit={this.submitHandler}>
+          <div className="singleproduct__form-formfield-div">
+            <input type="text" placeholder="subject" name="subject" className="singleproduct__form-formfield-div-input"></input>
+            <input type="text" placeholder="email" name="email" className="singleproduct__form-formfield-div-input"></input>
+            <textarea placeholder="place comment here" className="singleproduct__form-formfield-div-textarea" name="comments"></textarea>
+          </div>
+          <button className="singleproduct__form-formfield-button">Comment</button>
+        </form>
         {this.state.comments.map((comment)=>{
         return(
         <div className="singleproduct__form-div4" key={comment.id}>
-          <img src={cancel} alt ={cancel} onClick={this.onDelete} className="singleproduct__card-back"></img>
           <div className="singleproduct__form-div4-comments">
             <h3 className="singleproduct__form-div4-comments-name">{comment.subject}</h3>
             <p className="singleproduct__form-div4-comments-text">{comment.email}</p>

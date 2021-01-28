@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
  
 import { withAuthorization } from '../Session/Session';
 
-import './Home.scss'
+import './Home.scss';
+import cart from '../../assets/icons/shoppingcart.svg';
  
 class HomePage extends React.Component{
 
@@ -26,7 +27,7 @@ componentDidMount(){
 clickHandler(product){
 
   const upload = {
-    productID: product.id,
+    id: product.id,
     productName: product.title,
     productImage: product.image,
     productPrice: product.price,
@@ -62,8 +63,7 @@ render(){
               <p className="home__card-price" name="productPrice">${(product.price).toFixed(2)}</p>
             </div>
             <div className="home__card-div3">
-              {/* <button className="home__card-div3-button" type="submit" form="form">Buy Now</button> */}
-              <h1 onClick={this.clickHandler.bind(this, product)}>Buy</h1>
+              <img src= {cart} onClick={this.clickHandler.bind(this, product)} alt="cart" className="home__card-div3-cart"></img>
             </div>  
           </div>
         </div>

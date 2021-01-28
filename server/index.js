@@ -22,8 +22,7 @@ app
 .post('/shoppingcart', (req, res) => {
 
 let upload = {
-    cartID: uuidv4(),
-    productID: req.body.productID,
+    id: req.body.id,
     productName: req.body.productName,
     productImage: req.body.productImage,
     productPrice: req.body.productPrice,
@@ -46,25 +45,25 @@ let upload = {
 return res.status(201).send(upload);})
 
 app
-.get('/shoppingcart/:productID', (req, res) => {
-    let productID = carts.find((cart)=> cart.productID == req.params.productID);
-    return res.send(productID);
+.get('/shoppingcart/:id', (req, res) => {
+    let id = carts.find((cart)=> cart.id == req.params.id);
+    return res.send(id);
     })
 
 app    
-.delete('/shoppingcart/:productID', (req, res) => {
-    for (let i = 0; i < carts.length; i++){
+.delete('/shoppingcart/:id', (req, res) => {
+    for (let i = 0; i < carts.length; i++)
+    {
     let currentCart = carts[i];
 
-    let newCart = carts.filter((cart)=> cart.productID !== req.params.productID)
-
-        if (currentCart.productID == req.params.productID){
+    let newCart = carts.filter(cart=> cart.id !== req.params.id)
+        if (currentCart.id !== req.params.id){
 
         fs.writeFile('./data/cart.json', JSON.stringify(newCart), (err) => {if (err){
             console.log(err)
         }})
 
-        return res.send(req.params.productID + ' ' + 'is deleted')
+        return res.send(req.params.id + ' ' + 'is deleted')
         }
     }
 })

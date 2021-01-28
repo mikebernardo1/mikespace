@@ -1,0 +1,56 @@
+@import '../../styles/fonts';
+@import '../../styles/global';
+@import '../../styles/mixins';
+@import '../../styles/partials';
+@import '../../styles/variables';
+
+.shoppingcart{
+    padding:0 180px;
+    background-color: $body-background;
+    height:95vh;
+    &__header{
+        display: flex;
+        justify-content: center;
+    }
+    &__block{
+        display:flex;
+        flex-wrap: wrap;
+    }
+    &__div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width:250px;
+        height:300px;
+        margin:8px;
+        border: 2px solid $nav-background;
+        border-radius: 20px;
+        padding:8px;
+        background-color: $card-background;
+
+        &-cancel{
+            width: 20px;
+            height: 20px;
+        }
+
+        &-image{
+            width: 100px;
+            height: 100px;
+            display:flex;
+            align-self: center;
+        }
+        &-totalprice{
+            display:flex;
+            justify-content: flex-end;
+            font-size: 2rem;
+            &--bold{
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__block:after {
+        content: '';
+        flex:auto;
+    }
+}

@@ -45,7 +45,8 @@ class App extends React.Component{
             <Route exact path='/home' component={Home} />
             <Route path='/home/:id' component={SingleProduct} />
             <Route path='/account' component={Account} />
-            <Route path='/shoppingcart' component={ShoppingCart} />
+            <Route exact path='/shoppingcart' component={ShoppingCart} />
+            <Route path='/shoppingcart/:productID' component={ShoppingCart} />
         </BrowserRouter>
       </>
     )

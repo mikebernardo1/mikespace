@@ -34,6 +34,14 @@
             overflow: scroll;
             margin:0 16px;
 
+            &-cart{
+                width:30px;
+                height:30px;
+                cursor: pointer;
+                display: flex;
+                align-self: flex-end;
+            }
+
             &-div1{
                 &-image{
                     width:300px;
@@ -51,5 +59,48 @@
                 }
             }
         }
+    }
+
+    &__form{
+        &-formfield{
+            display:flex;
+            flex-direction: column;
+            width:100%;
+            &-div{
+                display:flex;
+                flex-direction: column;
+                &-input{
+                    padding:8px;
+                    margin-bottom:4px;
+                    border-radius: 100px;
+                    border: none;
+                }
+                &-textarea{
+                padding:8px;
+                border-radius: 100px;
+                border: none;
+                margin-bottom:4px;
+                }
+            }
+            &-button{
+                padding:8px;
+                border-radius: 100px;
+                background-color: $nav-background;
+                color: $card-background;
+                border:none;
+            }
+        }
+        &-div4{
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            padding:8px;
+            border-radius: 100px;
+            border: none;
+            margin-top:8px;
+
+        }
+
     }
 }
