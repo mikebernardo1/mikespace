@@ -53,35 +53,24 @@ submitHandler = (e) =>{
 
   }
 
-onDelete = (id) => {
-    axios.delete(`http://localhost:8080/comments/${this.id}`)
-    .then((res=>{
-      this.setState({
-        cart: this.state.comments.filter(comment => comment.id !== id)
-        })
-      })
-    )}
-    
 handleBackButton = () => {
     this.props.history.goBack();
   }
 
-clickHandler(){
-
-    const upload = {
-      id: this.state.products.id,
-      productName: this.state.products.title,
-      productImage: this.state.products.image,
-      productPrice: this.state.products.price,
-      description: this.state.products.description,
-      category: this.state.products.category,
+  clickHandler(product){
+    const upload = 
+    {
+      id: product.id,
+      productName: product.title,
+      productImage: product.image,
+      productPrice: product.price,
+      description: product.description,
+      category: product.category,
       quantity:1
-  };
-  
+    }
     this.setState({
       cart:upload
     })
-  
     axios
     .post('http://localhost:8080/shoppingcart', upload)
   }

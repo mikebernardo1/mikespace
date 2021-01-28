@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import cancel from '../../assets/icons/cancel.png'
+import cancel from '../../assets/icons/cancel.png'
 import './ShoppingCart.scss';
  
 import { withAuthorization } from '../Session/Session';
@@ -11,28 +11,28 @@ class ShoppingCart extends React.Component{
     cart: [],
   }
 
-componentDidMount(){
-  axios.get('http://localhost:8080/shoppingcart')
+  componentDidMount(){
+    axios.get('http://localhost:8080/shoppingcart')
+    .then((res)=>{
+      this.setState({
+        cart: res.data
+      })
+    })
+  }
+
+  deleteItem (uniqueID) {
+  axios.delete(`http://localhost:8080/shoppingcart/${uniqueID}`)
+  .then(()=>{
+    return axios.get('http://localhost:8080/shoppingcart')
+  })
   .then((res)=>{
     this.setState({
       cart: res.data
     })
   })
-}
+  }
 
-// onDelete(id){
-//   axios
-//   .delete(`http://localhost:8080/shoppingcart/${id}`)
-//   .then((res)=>{
-//     this.setState(previousState=>{
-//       return{
-//         cart: previousState.cart.filter(cart => cart.id !== id)
-//       }
-//     })
-//   })
-// }
-
-render(){
+  render(){
   return(
     <div className="shoppingcart">
       <h1 className="shoppingcart__header">Items in shopping cart</h1>
@@ -40,8 +40,8 @@ render(){
       {this.state.cart.map((cart)=>
       {
       return(
-        <div key={cart.id} className="shoppingcart__div">
-          {/* <img src ={cancel} alt="cancel" onClick={this.onDelete} className="shoppingcart__div-cancel"></img> */}
+        <div key={cart.uniqueID} className="shoppingcart__div">
+          <img src ={cancel} alt="cancel" className="shoppingcart__div-cancel" onClick={()=>this.deleteItem(cart.uniqueID)}></img>
           <img src={cart.productImage} alt={cart.productName}  className="shoppingcart__div-image"></img>
           <h3 className="shoppingcart__div-title">{cart.productName}</h3>
           <p className="shoppingcart__div-price">${cart.productPrice}</p>
