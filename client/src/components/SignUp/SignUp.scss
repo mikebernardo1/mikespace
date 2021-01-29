@@ -41,16 +41,18 @@
 
         &-input{
             padding:8px;
+            margin-top:8px;
             border-radius: 100px;
             border: none;
         }
 
         &-button{
             padding:8px;
+            margin-top:8px;
             border-radius: 100px;
+            border:none;
             background-color: $nav-background;
             color: $card-background;
-            border:none;
         }
 
         &-errortext{

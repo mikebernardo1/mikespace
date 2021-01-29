@@ -8,7 +8,7 @@ import './PasswordForget.scss';
 const PasswordForget = () => (
   <div className="passwordforget">
     <div className="passwordforget__card">
-      <h1 className="passwordforget__header">Password Forget</h1>
+      <h2 className="passwordforget__header">Forgot Your Password?</h2>
       <PasswordForgetForm />
     </div>
   </div>
@@ -16,7 +16,7 @@ const PasswordForget = () => (
 
 const PasswordForgetLink = () => (
   <p className="passwordforget__form-text">
-    <Link to={'/pw-forget'}  className="passwordforget__form-text-link">Forgot Password?</Link>
+    <Link to={'/pw-forget'}  className="passwordforget__form-text-link">Forgot Your Password?</Link>
   </p>
 );
  

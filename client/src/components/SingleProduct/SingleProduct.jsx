@@ -31,18 +31,15 @@ class SingleProduct extends React.Component{
     })
   }
 
-submitHandler = (e) =>{
+  submitHandler = (e) =>{
     e.preventDefault();
-  
     const upload = {
       subject: e.target.subject.value,
       email: e.target.email.value,
       comments: e.target.comments.value
   };
-  
     axios
     .post('http://localhost:8080/comments', upload)
-
     axios
     .get('http://localhost:8080/comments')
     .then((res)=>{
@@ -50,22 +47,22 @@ submitHandler = (e) =>{
         comments: res.data
       })
     })
-
+    // document.getElementById("form").reset();
   }
 
-handleBackButton = () => {
+  handleBackButton = () => {
     this.props.history.goBack();
   }
 
-  clickHandler(product){
+  clickHandler(){
     const upload = 
     {
-      id: product.id,
-      productName: product.title,
-      productImage: product.image,
-      productPrice: product.price,
-      description: product.description,
-      category: product.category,
+      id: this.state.products.id,
+      productName: this.state.products.title,
+      productImage: this.state.products.image,
+      productPrice: this.state.products.price,
+      description: this.state.products.description,
+      category: this.state.products.category,
       quantity:1
     }
     this.setState({
@@ -76,7 +73,6 @@ handleBackButton = () => {
   }
 
   render(){
-
   return (
     <div className="singleproduct">
       <div className="singleproduct__card-block">
@@ -89,7 +85,7 @@ handleBackButton = () => {
           <h4 className="singleproduct__card-block-div2-price">${this.state.products.price}</h4>
           <p className="singleproduct__card-block-div2-description">{this.state.products.description}</p>
         </div>
-        <img src= {cart} onClick={this.clickHandler} alt="cart"  className="singleproduct__card-block-cart"></img>
+        <img src= {cart} onClick={()=>this.clickHandler()} alt="cart"  className="singleproduct__card-block-cart"></img>
       </div>
       
       <div className="singleproduct__card-block">

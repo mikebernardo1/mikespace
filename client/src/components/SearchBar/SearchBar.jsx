@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function SearchBar() {
+export default function SearchBar(props) {
+
   return (
   <form className="navauth__form">
     <input type="text" className="navauth__form-input"></input>

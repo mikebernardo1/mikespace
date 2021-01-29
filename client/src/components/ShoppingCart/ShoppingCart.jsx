@@ -25,9 +25,10 @@ class ShoppingCart extends React.Component{
   .then(()=>{
     return axios.get('http://localhost:8080/shoppingcart')
   })
+  
   .then((res)=>{
     this.setState({
-      cart: res.data
+      cart: this.state.cart.filter(item => item.uniqueID !== uniqueID)
     })
   })
   }

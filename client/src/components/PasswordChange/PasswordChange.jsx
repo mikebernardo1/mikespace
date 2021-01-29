@@ -6,16 +6,16 @@ import './PasswordChange.scss';
  
 class PasswordChangeForm extends Component {
   state={
-    passwordOne: '',
-    passwordTwo: '',
+    initialPassword: '',
+    confirmedPassword: '',
     error: null,
   }
  
   onSubmit = (e) => {
-    const { passwordOne } = this.state;
+    const { initialPassword } = this.state;
  
     this.props.firebase
-      .PasswordUpdate(passwordOne)
+      .PasswordUpdate(initialPassword)
       .then(() => {
         this.setState(this.state)
         return alert('Password Changed')
@@ -31,25 +31,25 @@ class PasswordChangeForm extends Component {
   };
  
   render() {
-    const { passwordOne, passwordTwo, error } = this.state;
+    const { initialPassword, confirmedPassword, error } = this.state;
  
     const isInvalid =
-      passwordOne !== passwordTwo || passwordOne === '';
+      initialPassword !== confirmedPassword || initialPassword === '';
  
     return (
       <form onSubmit={this.onSubmit} className="passwordchange__form">
         <div className="passwordchange__form-div1">
           <input
-            name="passwordOne"
-            value={passwordOne}
+            name="initialPassword"
+            value={initialPassword}
             onChange={this.onChange}
             type="password"
             placeholder="New Password"
             className="passwordchange__form-input"
           />
           <input
-            name="passwordTwo"
-            value={passwordTwo}
+            name="confirmedPassword"
+            value={confirmedPassword}
             onChange={this.onChange}
             type="password"
             placeholder="Confirm New Password"
@@ -60,8 +60,8 @@ class PasswordChangeForm extends Component {
           </button>
         </div>
  
-        {error && <p className="passwordchange__form-errortext"
->{error.message}</p>}
+        {error && <p className="passwordchange__form-errortext">
+        {error.message}</p>}
       </form>
     );
   }

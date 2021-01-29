@@ -10,7 +10,7 @@ const AccountPage = () => (
     {authUser => (
       <div className="account">
         <div className="account__card">
-          <h1 className="account__header">User: {authUser.email}</h1>
+          <h2 className="account__header">User: {authUser.email}</h2>
           <PasswordChangeForm />
         </div>
       </div>

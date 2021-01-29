@@ -11,7 +11,7 @@ import './SignIn.scss';
 const SignInPage = () => (
   <div className="signin">
     <div className="signin__card">
-      <h1 className="signin__header">Sign In</h1>
+      <h2 className="signin__header">Sign In</h2>
       <SignInForm />
       <PasswordForgetLink/>
       <SignUpLink />

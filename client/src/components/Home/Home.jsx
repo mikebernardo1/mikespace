@@ -35,13 +35,17 @@ clickHandler(product){
     category: product.category,
     quantity:1
 };
-
   this.setState({
     cart:upload
   })
-
   axios
   .post('http://localhost:8080/shoppingcart', upload)
+}
+
+updateSearch(e){
+  this.setState({
+    products: e.target.value.substr(0,20)
+  });
 }
 
 render(){
@@ -63,7 +67,7 @@ render(){
               <p className="home__card-price" name="productPrice">${(product.price).toFixed(2)}</p>
             </div>
             <div className="home__card-div3">
-              <img src= {cart} onClick={this.clickHandler.bind(this, product)} alt="cart" className="home__card-div3-cart"></img>
+              <img src= {cart} onClick={()=>this.clickHandler(product)} alt="cart" className="home__card-div3-cart"></img>
             </div>  
           </div>
         </div>
