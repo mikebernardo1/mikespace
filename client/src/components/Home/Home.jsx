@@ -42,12 +42,6 @@ clickHandler(product){
   .post('http://localhost:8080/shoppingcart', upload)
 }
 
-updateSearch(e){
-  this.setState({
-    products: e.target.value.substr(0,20)
-  });
-}
-
 render(){
   return(
   <div className="home">
