@@ -33,6 +33,7 @@ class SingleProduct extends React.Component{
 
   submitHandler = (e) =>{
     e.preventDefault();
+
     const upload = {
       subject: e.target.subject.value,
       email: e.target.email.value,
@@ -40,14 +41,15 @@ class SingleProduct extends React.Component{
   };
     axios
     .post('http://localhost:8080/comments', upload)
+    document.getElementById("form").reset();
+
     axios
     .get('http://localhost:8080/comments')
     .then((res)=>{
       this.setState({
-        comments: res.data
+        comments: res.data.reverse()
       })
     })
-    // document.getElementById("form").reset();
   }
 
   handleBackButton = () => {
@@ -95,7 +97,7 @@ class SingleProduct extends React.Component{
         <div className="singleproduct__form-div2">
           <p className="singleproduct__form-div2-text">Write your review</p>
         </div>
-        <form className="singleproduct__form-formfield" onSubmit={this.submitHandler}>
+        <form id="form" className="singleproduct__form-formfield" onSubmit={this.submitHandler}>
           <div className="singleproduct__form-formfield-div">
             <input type="text" placeholder="subject" name="subject" className="singleproduct__form-formfield-div-input"></input>
             <input type="text" placeholder="email" name="email" className="singleproduct__form-formfield-div-input"></input>

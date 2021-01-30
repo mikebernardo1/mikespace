@@ -12,7 +12,11 @@
         display: flex;
         justify-content: center;
     }
-    &__block{
+    &__button{
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__block1{
         display:flex;
         flex-wrap: wrap;
     }
@@ -20,6 +24,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-width:250px;
+        min-height:300px;
         width:250px;
         height:300px;
         margin:8px;
