@@ -1,7 +1,6 @@
 @import '../../styles/fonts';
 @import '../../styles/global';
 @import '../../styles/mixins';
-@import '../../styles/partials';
 @import '../../styles/variables';
 
 .home{
@@ -9,14 +8,12 @@
     background-color: $body-background;
 
     &__header{
+        @include flexJcenter;
         width:100%;
-        display:flex;
-        justify-content: center;
     }
 
     &__form{
-        display:flex;
-        justify-content: center;
+        @include flexJcenter;
         flex-wrap: wrap;
     }
 
@@ -33,16 +30,14 @@
         background-color: $card-background;
 
         &-div1{
-            display: flex;
-            justify-content: center;
+            @include flexJcenter;
             align-items: center;
             height: 100px;
         }
 
         &-div2{
-            display: flex;
+            @include flexJcenter;
             flex-direction: column;
-            justify-content: center;
             height:100%;
         }
 
@@ -53,8 +48,7 @@
 
         &-price{
             display:flex;
-            align-items: flex-end;
-            justify-items: flex-end;
+            @include flexJendAend;
             padding:8px 0;
             width:100%;
             height:100%;
@@ -67,8 +61,7 @@
 
         &-div3{
             display:flex;
-            justify-content: flex-end;
-            align-items: flex-end;
+            @include flexJendAend;
 
             &-inventory{
                 display: flex;

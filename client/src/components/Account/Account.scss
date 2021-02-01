@@ -1,27 +1,19 @@
 @import '../../styles/fonts';
 @import '../../styles/global';
 @import '../../styles/mixins';
-@import '../../styles/partials';
 @import '../../styles/variables';
 
 .account{
-
+    @include flexColumnJcenterAcenter;
     height:96vh;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: $body-background;
 
     &__card{
+        @include flexColumnJcenterAcenter;
         width: 400px;
         height: 400px;
         border: 2px solid $nav-background;
         border-radius: 20px;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         padding: 8px;
         background-color: $card-background;
     }
