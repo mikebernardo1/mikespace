@@ -8,7 +8,7 @@ import './SignUp.scss';
 const SignUpPage = () => (
   <div className="signup">
     <div className="signup__card">
-      <h1 className="signup__header">SignUp</h1>
+      <h2 className="signup__header">Sign Up</h2>
       <SignUpForm/>
     </div>
   </div>
