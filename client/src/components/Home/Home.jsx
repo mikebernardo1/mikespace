@@ -39,7 +39,7 @@ clickHandler(product){
     cart:upload
   })
   axios
-  .post('http://localhost:8080/shoppingcart', upload)
+  .post('/shoppingcart', upload)
 }
 
 render(){

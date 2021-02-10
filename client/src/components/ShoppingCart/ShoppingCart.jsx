@@ -13,7 +13,7 @@ class ShoppingCart extends React.Component{
   }
 
   componentDidMount(){
-    axios.get('http://localhost:8080/shoppingcart')
+    axios.get('/shoppingcart')
     .then((res)=>{
       this.setState({
         cart: res.data
@@ -22,9 +22,9 @@ class ShoppingCart extends React.Component{
   }
 
   deleteItem (uniqueID) {
-  axios.delete(`http://localhost:8080/shoppingcart/${uniqueID}`)
+  axios.delete(`/shoppingcart/${uniqueID}`)
   .then(()=>{
-    return axios.get('http://localhost:8080/shoppingcart')
+    return axios.get('/shoppingcart')
   })
   
   .then((res)=>{

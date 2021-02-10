@@ -22,7 +22,7 @@ class SingleProduct extends React.Component{
         products: res.data
       })
     })
-    axios.get('http://localhost:8080/comments')
+    axios.get('/comments')
     .then((res)=>{
       console.log(res.data)
       this.setState({
@@ -40,11 +40,11 @@ class SingleProduct extends React.Component{
       comments: e.target.comments.value
   };
     axios
-    .post('http://localhost:8080/comments', upload)
+    .post('/comments', upload)
     document.getElementById("form").reset();
 
     axios
-    .get('http://localhost:8080/comments')
+    .get('/comments')
     .then((res)=>{
       this.setState({
         comments: res.data.reverse()
@@ -71,7 +71,7 @@ class SingleProduct extends React.Component{
       cart:upload
     })
     axios
-    .post('http://localhost:8080/shoppingcart', upload)
+    .post('/shoppingcart', upload)
   }
 
   render(){
