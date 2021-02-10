@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://<app_name>.herokuapp.com:5000"
+  "proxy": "https://mikespace.herokuapp.com:5000"
 }
