@@ -5,14 +5,17 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
+const PORT = process.env.PORT || 8080;
 
 const shoppingcartRoute = require('./routes/shoppingcartRoute');
 const commentsRoute = require('./routes/commentsRoute');
 
-const PORT = process.env.PORT || 5000;
-
 app.use('/shoppingcart', shoppingcartRoute);
 app.use('/comments', commentsRoute);
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+}
 
 // start Express on port 8080
 app.listen(PORT, () => {
