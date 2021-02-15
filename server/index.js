@@ -1,13 +1,12 @@
 // initialize Express in project
 const express = require('express');
 const app = express();
-const logger = require("./middleware/logger");
 
 const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
-app.use(logger);
+app.use(express.static("public"));
 
 const PORT = process.env.PORT || 5000;
 
